@@ -1,0 +1,26 @@
+// Demo Mapping Edso data to stardog
+PREFIX : <http://sherwin.com/ontology/location#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX stardog: <tag:stardog:api:>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+MAPPING
+FROM SQL {
+	SELECT *
+	FROM "DW_ADMIN"."D_LOCATIONS"
+	WHERE LOCATION_STATUS = 'O' AND LOCATION_TYPE = 'WHSE'
+}
+TO {
+	?Warehouse a :Warehouse ;
+	:Id ?LOCATION_SKEY ;
+	:Name ?LOCATION_NAME ;
+	:City ?CITY;
+	:Country ?COUNTRY;
+	:Status ?LOCATION_STATUS;
+	:Type: ?LOCATION_TYPE;
+} WHERE {
+	BIND(template("http://sherwin.com/ontology/location#Warehouse{LOCATION_SKEY}") AS ?Warehouse)
+}
+

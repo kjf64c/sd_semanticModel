@@ -1,0 +1,17 @@
+# 22020823 Simple mapping exercise between warehouse locations and ontology
+# Test Dataload in SF with desktop instance of SD
+
+PREFIX : <http://sherwin.com/ontology/location#>
+
+MAPPING :WHSEMapping
+FROM SQL {
+  SELECT * FROM "D_LOCATIONS" WHERE LOCATION_STATUS = 'O' AND LOCATION_TYPE = 'WHSE'
+}
+TO {
+  ?Warehouse a :Warehouse ;
+           :Name ?Location_Name ;
+           :City ?City
+} 
+WHERE {
+  BIND(template("http://sherwin.com/ontology/location#Warehouse{LOCATION_SKEY}") AS ?Warehouse)
+};

@@ -1,0 +1,15 @@
+// location information for SW
+// Local namespace
+PREFIX : <http://sherwin.com/ontology/location/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX sloc: <https://schema.org/Place#>
+
+
+
+MAPPING
+FROM SQL
+select * from "DW_ADMIN"."D_LOCATIONS" where 
+
+TO
+

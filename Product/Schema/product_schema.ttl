@@ -1,0 +1,61 @@
+PREFIX : <http://stardog.com/tutorial/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+:Thing a rdfs:Class ;
+   rdfs:label "Thing" ;
+   rdfs:comment "A Thing" .
+
+:Brand a rdfs:Class ;
+   rdfs:label "Brand" ;
+   rdfs:comment "A person or a group of people creating and performing music." .
+
+:Product a rdfs:Class ;
+   rdfs:label "Product" ;
+   rdfs:comment "A finished good or sellable product. Composable unit to create other sellable products " ;
+   rdfs:subClassOf :Brand, :Thing .
+
+:Container a rdfs:Class ;
+   rdfs:label "Size Code", "Package" ;
+   rdfs:comment "FillRex" ;
+
+:Formula  a rdfs:Class ;
+   rdfs:label "Formula" ;
+   rdfs:comment "Chemical composition and manufacturing process for the product (MasterRex)." ;
+
+:Location a rdfs:Class ;
+   rdfs:label "Location" ;
+   rdfs:comment "Physical location." ;
+
+
+:date a rdf:Property ;
+   rdfs:label "date" ;
+   rdfs:comment "Product manufacturing date." ;
+   rdfs:domain :Product ;
+   rdfs:range xsd:date .
+
+:artist a rdf:Property ;
+   rdfs:label "artist" ;
+   rdfs:comment "The artist that performed this album." ;
+   rdfs:domain :Album ;
+   rdfs:range :Artist .
+
+:track a rdf:Property ;
+   rdfs:label "track" ;
+   rdfs:comment "A song included in an album." ;
+   rdfs:domain :Album ;
+   rdfs:range :Song .
+
+:writer a rdf:Property ;
+   rdfs:label "writer" ;
+   rdfs:comment "A person or a group of people who participated in the creation of song as a composer or a lyricist." ;
+   rdfs:domain :Song ;
+   rdfs:range :Songwriter .
+
+:length a rdf:Property ;
+   rdfs:label "length" ;
+   rdfs:comment "The length of a song in the album expressed in seconds." ;
+   rdfs:domain :Song ;
+   rdfs:range xsd:integer .
